@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DenemedivAI</title>
+    <style>
+        #soru1{
+            position: fixed;
+            bottom: 12%;
+            left: 50%;
+            width: 300px;
+            height: 100px;
+            background-color: blue;
+            color: white;
+            border-radius: 20px;
+        }
+        #hm1{
+            display: none;
+        }
+        #konter1{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <h2>DenemedivAI 1.1</h2>
+    <h2 id="c1"></h2>
+    <div id="konter1">
+    <textarea name="" id="soru1" placeholder="DenemedivAI'ye Birşey Sorun"></textarea>
+    <button onclick="A1()" id="soru2">Gönder</button>
+    </div>
+<div id="hm1">
+    <input type="number" name="" id="one1">
+    <h2>+</h2>
+    <input type="number" name="" id="two2">
+    <p id="snc1"></p>
+</div>
+    <script>
+        const responses = {
+            "merhaba":"Merhabalar. Bugün Nasılsın.",
+            "nasılsın":"İyiyim.Sen Nasılsın.",
+            "iyiyim":"Harika.",
+            "kötüyüm":"üzgünüm böyle hissetmene.",
+            "saat kaç":"Saat: " + new Date().getHours() + ":" + new Date().getMinutes(),
+            "senin üreticilerin kim":"Denemediv tarafından yapıldım.",
+            "rastgele sayı tut":"Tamam Tuttuğum Sayı: " + Math.floor(Math.random()* 1000)
+        }
+    document.addEventListener("keydown", function(event){
+if(event.key === "Enter"){
+    A1();
+}
+    });
+    function A1(){
+        var e = document.getElementById("soru1").value;
+        var c1 = document.getElementById("c1");
+        var keys = Object.keys(responses);
+        for(var i = 0; i < keys.length; i++){
+            if(e.includes(keys[i])){
+                c1.innerHTML = responses[keys[i]];
+                return;
+            }
+            else{
+                c1.innerHTML = "Şuanda Bu Sorduğunuz Sorunun Cevabını Bilmiyorum. Sorunuz:" + e;
+            }
+        }
+        //if(e.toLowerCase() === "merhaba" || e.toLowerCase() === "selam"){
+//c1.innerHTML = "Merhabalar. Bugün Nasılsın, Sana Nasıl Yardımcı Olabilirim.";
+//        }
+//        else if(e.toLowerCase() === "nasılsın"){
+//            c1.innerHTML = "İyiyim. Sen Nasılsın.";
+//        }
+//        else if(e.toLowerCase() === "iyiyim"){
+//            c1.innerHTML = "Çok Sevindim";
+//        }
+//        else if(e.toLowerCase() === "kötüyüm" || e.toLowerCase() === "kendimi iyi hissetmiyorum"){
+//            c1.innerHTML = ":(";
+//        }
+//        else if(e.toLowerCase() === "saat kaç" || e.toLowerCase() === "şuan saat kaç"){
+//            var s1 = new Date();
+//            c1.innerHTML = "Şuan Saat " + s1.getHours() + ":" + s1.getMinutes();
+//        }
+//        else if(e.toLowerCase() === "senin üreticilerin kim" || e.toLowerCase() === "seni kim yaptı"){
+//            c1.innerHTML = "Denemediv tarafından yapıldım.";
+//        }
+//        else if(e.toLowerCase() === "rastgele sayı tut" || e.toLowerCase() === "random sayı tut"){
+//            var s2 = Math.floor(Math.random()* 1000);
+//            c1.innerHTML = "Tamam Tutuyorum: " + s2;
+//        }
+        if(e.toLowerCase() === "hesap makinesi" || e.toLowerCase() === "hesap makinesini aç"){
+            c1.innerHTML = "Tabikide Açıyorum: (tab ile toplama yapabilirsin)";
+            document.getElementById("hm1").style.display = "block";
+        }
+            else{
+c1.innerHTML = "Şuanda Bu Sorduğunuz Sorunun Cevabını Bilmiyorum. Sorunuz" + e;
+    };
+    }
+    document.addEventListener("keydown", function(event){
+        if(event.key === "Tab"){
+var one1 = parseFloat(document.getElementById("one1").value);
+var one2 = parseFloat(document.getElementById("two2").value);
+document.getElementById("snc1").innerHTML = one1 + one2;
+        }
+    });
+</script>
+</body>
+</html>
